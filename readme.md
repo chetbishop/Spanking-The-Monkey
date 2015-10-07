@@ -69,4 +69,59 @@ The install process for mysql-server will prompt you to enter a password for the
 The www.angry_monkey.com website has its own unique database inside of MySQL.  We will need to create the database and a user to interact with the database.
 ```
 sudo mysql -p
+```
+Enter password from install
+```
 create database web;grant select, insert, update, delete, create, drop, index, alter, create temporary tables, lock tables on web.* to ‘luser’@’localhost’ identified by ‘s3cr3t1smIsTh3K3y’;```
+
+####Setup website
+Now comes the fun part.  Installing the www.angry_monkey.com website.  To do this we will clone the git repo and move the files around. 
+
+First we need to make sure that git is installed
+```
+sudo apt-get install git -y
+```
+
+Next pick a directory and clone the repo.  
+```
+cd ~/Desktop
+git clone https://github.com/chetbishop/Spanking-The-Monkey.git
+```
+
+Populate the database
+```
+cd Spanking-The-Monkey/WebSite
+gunzip < Database/web.gz | sudo mysql -p web
+```
+
+Copy the Apache2 config file
+```
+sudo cp Apache\ Config/default /etc/apache2/sites-available/000-default.conf
+```
+
+Copy the website content
+```
+sudo cp -r Content/vulnsite/ /var/www/
+```
+
+Restart Apache
+```
+sudo service apache2 restart
+```
+
+####Update the /etc/hosts file
+Since we are running the website locally, and not using a DNS server, we need to tell Ubuntu how to reach www.angry_monkey.com
+
+Open the /etc/hosts file with your favorite text editor
+```
+sudo vi /etc/hosts
+```
+
+Add the following lines to the bottom of the file
+```
+#www.angry_monkey vulnerable site
+127.0.0.1 www.angry_monkey.com
+```
+
+####Go Have Fun
+You should now be able to open your web browser and go to www.angry_monkey.com
