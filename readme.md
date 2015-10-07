@@ -65,5 +65,8 @@ sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql -y```
 
 The install process for mysql-server will prompt you to enter a password for the “root” user of the database.  This will be the master administrator password and should be different then the password you use for your user account.  
 
-
-
+####Prepare the Database
+The www.angry_monkey.com website has its own unique database inside of MySQL.  We will need to create the database and a user to interact with the database.
+```
+sudo mysql -p
+create database web;grant select, insert, update, delete, create, drop, index, alter, create temporary tables, lock tables on web.* to ‘luser’@’localhost’ identified by ‘s3cr3t1smIsTh3K3y’;```

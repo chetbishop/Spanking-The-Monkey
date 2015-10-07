@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !\.(?:css|png|jpe?g|gif)$ [NC,OR]
+    RewriteRule ^profiles/([^/]+)/([^/]+)/?$ profile.php?id=$1&username=$2 [L]
+</IfModule>

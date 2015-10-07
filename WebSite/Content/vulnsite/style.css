@@ -1,0 +1,47 @@
+html, body {
+    height:100%;
+    width:100%;
+    position:relative;
+}
+
+header {
+    /*background-color:black;*/
+    color:white;
+    text-align:center;
+    /*padding:5px;*/
+}
+nav {
+    position:absolute;
+    height:100%;
+    width:20%;
+    line-height:30px;
+    background-color:#eeeeee;
+    /*float:left;*/
+    /*padding:5px;*/
+}
+section {
+    width:80%;
+    margin-left:20%; /* compensate for width */
+    /*float:left;*/
+    /*padding:10px;*/
+}
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    /*padding:5px;*/
+}
+
+a {
+    color:#369;
+}
+a:hover {
+    color:#fff;
+    background:#369;
+    text-decoration:none;
+}
+
+#badmonkey {
+    float:left;
+}
