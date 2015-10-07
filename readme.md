@@ -130,3 +130,14 @@ Add the following lines to the bottom of the file
 
 ####Go Have Fun
 You should now be able to open your web browser and go to www.angry_monkey.com
+
+###Resources
+Our notes for the talk are in the Resources folder.  Below are links for the tools and orginizations we speak about.
+
+* [OWASP] (https://www.owasp.org)
+* [OWASP Top 10] (https://www.owasp.org/index.php/Top_10_2013)
+* [OWASP Testing Guide] (https://www.owasp.org/index.php/OWASP_Testing_Guide_v4_Table_of_Contents)
+* [OWASP Testing for Reflected Cross site scripting] (https://www.owasp.org/index.php/Testing_for_Reflected_Cross_site_scripting_(OTG-INPVAL-001))
+* [OWASP Testing for SQL Injection] (https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005))
+* [OWASP Testing for MySQL] (https://www.owasp.org/index.php/Testing_for_MySQL)
+* [OWASP Testing for Command Injection] (https://www.owasp.org/index.php/Testing_for_Command_Injection_(OTG-INPVAL-013))
