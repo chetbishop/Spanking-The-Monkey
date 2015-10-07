@@ -51,7 +51,9 @@ The A in LAMP
 ```
 sudo apt-get install apache2-mpm-prefork apache2-utils libapache2-mod-dnssd -y
 sudo a2enmod rewrite
-```####Install PHP
+```
+
+####Install PHP
 The P in LAMP
 ```
 sudo apt-get install libapache2-mod-php5 -y
@@ -61,7 +63,8 @@ sudo a2enmod php5
 ####Install MySQL
 The M in LAMP.  This is also the most complicated install we will be doing.
 ```
-sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql -y```
+sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql -y
+```
 
 The install process for mysql-server will prompt you to enter a password for the “root” user of the database.  This will be the master administrator password and should be different then the password you use for your user account.  
 
@@ -72,7 +75,9 @@ sudo mysql -p
 ```
 Enter password from install
 ```
-create database web;grant select, insert, update, delete, create, drop, index, alter, create temporary tables, lock tables on web.* to ‘luser’@’localhost’ identified by ‘s3cr3t1smIsTh3K3y’;```
+create database web;
+grant select, insert, update, delete, create, drop, index, alter, create temporary tables, lock tables on web.* to 'luser'@'localhost' identified by 's3cr3t1smIsTh3K3y';
+```
 
 ####Setup website
 Now comes the fun part.  Installing the www.angry_monkey.com website.  To do this we will clone the git repo and move the files around. 
