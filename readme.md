@@ -39,32 +39,20 @@ After getting Ubuntu installed, we will want to ensure that it is up-to-date
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get dost-upgrade
+sudo apt-get dist-upgrade
 reboot
 ```
 
 ####Install LAMP stack
 The Linux, Apache, MySQL, PHP (LAMP) stack is a popular open source web platform commonly used to run dynamic web sites and servers.  Since the stack is so popular, we decided to pick on it.
 
-#####Install Apache2
-The A in LAMP
+On Ubuntu the LAMP stack can be installed either separately or with the special package lamp-server
+
 ```
-sudo apt-get install apache2-mpm-prefork apache2-utils libapache2-mod-dnssd -y
-sudo a2enmod rewrite
+sudo apt-get install lamp-server^
 ```
 
-####Install PHP
-The P in LAMP
-```
-sudo apt-get install libapache2-mod-php5 -y
-sudo a2enmod php5
-```
-
-####Install MySQL
-The M in LAMP.  This is also the most complicated install we will be doing.
-```
-sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql -y
-```
+(Mind the caret (^) at the end)
 
 The install process for mysql-server will prompt you to enter a password for the “root” user of the database.  This will be the master administrator password and should be different then the password you use for your user account.  
 
