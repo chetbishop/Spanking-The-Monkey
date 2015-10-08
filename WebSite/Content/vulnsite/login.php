@@ -27,13 +27,13 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 
 	if(!$row){
 	?>
-		<!-- XSS -->
+		<!-- XSS is here -->
 		<div>Nobody here with the username <?php echo anti_xss_filter($_POST['username']); ?></div>
 	<?php
 	}
 	else {
 	?>
-		<h2><p>You're in!</p><p>DemoGods 0 - Antonio 1</p></h2>
+		<h2><p>You're in!</p><p>Demo Gods 0 | Demo Guys += 1</p></h2>
 	<?php
 	}
 } else {

