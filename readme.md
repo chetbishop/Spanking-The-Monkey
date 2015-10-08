@@ -49,25 +49,15 @@ The Linux, Apache, MySQL, PHP (LAMP) stack is a popular open source web platform
 On Ubuntu the LAMP stack can be installed either separately or with the special package lamp-server
 
 ```
-sudo apt-get install lamp-server^
+sudo apt-get install lamp-server^ -y
 ```
 
 (Mind the caret (^) at the end)
 
 The install process for mysql-server will prompt you to enter a password for the “root” user of the database.  This will be the master administrator password and should be different then the password you use for your user account.  
 
-####Prepare the Database
-The www.angry_monkey.com website has its own unique database inside of MySQL.  We will need to create the database and a user to interact with the database.
-```
-sudo mysql -p
-```
-Enter password from install
-```
-create database web;
-grant select, insert, update, delete, create, drop, index, alter, create temporary tables, lock tables on web.* to 'luser'@'localhost' identified by 's3cr3t1smIsTh3K3y';
-```
-
 ####Setup website
+
 Now comes the fun part.  Installing the www.angry_monkey.com website.  To do this we will clone the git repo and move the files around. 
 
 First we need to make sure that git is installed
@@ -81,20 +71,25 @@ cd ~/Desktop
 git clone https://github.com/chetbishop/Spanking-The-Monkey.git
 ```
 
-Populate the database
+Populate the database, entering the password you setup earlier when prompted.
 ```
 cd Spanking-The-Monkey/WebSite
-gunzip < Database/web.gz | sudo mysql -p web
+mysql -u root -p < Database/schema.sql
 ```
 
 Copy the Apache2 config file
 ```
-sudo cp Apache\ Config/default /etc/apache2/sites-available/000-default.conf
+sudo cp Apache\ Config/default /etc/apache2/sites-enabled/000-default.conf
 ```
 
 Copy the website content
 ```
 sudo cp -r Content/vulnsite/ /var/www/
+```
+
+Enable mod_rewrite in Apache
+```
+sudo a2enmod rewrite
 ```
 
 Restart Apache
