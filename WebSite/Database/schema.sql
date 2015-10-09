@@ -33,7 +33,7 @@ INSERT INTO users (id, us3rn4m3, twitter, PassW0rdColuMn) VALUES
 
 INSERT INTO profiles (userid, profile) VALUES
 (
-	42, 'Antonio Herraiz is a Security Consultant and coder. Antonio has been writing and breaking code in different continents and languages for six years. He\'s CEH, CPT and ACE certified. He likes to chat at all levels of the stack and he\'s always trying to understand what goes on under the hood.'
+	42, 'Antonio Herraiz is a Security Consultant and coder. Antonio has been writing and breaking code in different continents and languages for six years. He likes to chat at all levels of the stack and he\'s always trying to understand what goes on under the hood.'
 );
 INSERT INTO profiles (userid, profile) VALUES
 (
@@ -41,7 +41,7 @@ INSERT INTO profiles (userid, profile) VALUES
 );
 INSERT INTO profiles (userid, profile) VALUES
 (
-        31337, 'Chester BIO goes here.'
+        31337, 'Chester Bishop is a self employed guy who is faking it till he makes it in Denver, CO. His primary focus has been blue team work in the DoD and had recently branched into the criminal world.'
 );
 
 

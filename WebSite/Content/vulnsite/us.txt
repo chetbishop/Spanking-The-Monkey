@@ -1,3 +1,3 @@
 <p>Justin Whitehead is a Security and Forensic Analyst at One World Labs in Denver, CO. Justin received his Bachelors of Science in Computer Information Systems with a focus in Computer Forensics. His certifications include: CompTIA Security+, ITIL Foundations, CHFI, CCFI, CEH, CPT and ACE.</p>
-<p>Antonio Herraiz is a Security Consultant at One World Labs in Denver, CO. Antonio has been writing and breaking code in different continents and languages for six years. He's CEH, CPT and ACE certified. He likes to chat at all levels of the stack and he's always trying to understand what goes on under the hood.</p>
-<p>Chester BIO goes here</p>
+<p>Antonio Herraiz is a Security Consultant at One World Labs in Denver, CO. Antonio has been writing and breaking code in different continents and languages for six years. He likes to chat at all levels of the stack and he's always trying to understand what goes on under the hood.</p>
+<p>Chester Bishop is a self employed guy who is faking it till he makes it in Denver, CO. His primary focus has been blue team work in the DoD and had recently branched into the criminal world.</p>
