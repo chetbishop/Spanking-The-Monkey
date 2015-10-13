@@ -18,8 +18,11 @@ alt=“SecKC” width=“560” height=“315” border=“0” /></a>
 ####DerbyCon 5.0 (Louisville, Kentucky)
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=sQTiLD32U70" target="_blank"><img src="http://img.youtube.com/vi/sQTiLD32U70/0.jpg" 
-alt=“SecKC” width=“560” height=“315” border=“0” /></a> 
+alt=“DerbyCon” width=“560” height=“315” border=“0” /></a> 
 
+####GrrCon 2015 (Grand Rapids, Michigan)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=dO9LQZaV19g" target="_blank"><img src="http://img.youtube.com/vi/dO9LQZaV19g/0.jpg" 
+alt=“GrrCon” width=“560” height=“315” border=“0” /></a> 
 *****
 ###Follow Along
 Follow along with us or play around with the website.  This section will describe how to get the vulnerable website up and running on your own virtual machine.  
